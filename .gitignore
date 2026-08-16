@@ -1,0 +1,135 @@
+# ---------------------------------------------------------------------------
+# Donor and patient identifiers. Never commit these.
+#
+# The AMSC data is individual-level and stays in its protected environment. The
+# code in this repository refers to donors only through placeholders such as
+# <DONOR_ID> and through column names such as Patient_ID; no identifier values
+# belong in any tracked file.
+# ---------------------------------------------------------------------------
+*PRIVATE*
+*private_donor*
+V2F_PRIVATE_donor_ids.md
+*donor_ids*
+*donor_metadata*
+*village_metadata*
+AMSC_ids*
+MOVE_ids*
+*id_map*
+*SUBJID*
+*CGBID*
+
+# ---------------------------------------------------------------------------
+# Individual-level inputs and MOVE working directories.
+#
+# These live in the protected environment where the notebooks are run. The
+# paths are listed here so that a stray local copy can never be committed.
+# ---------------------------------------------------------------------------
+# Anchored to the repository root so that configs/MOVE/data/ stays tracked.
+/data/
+/data_residualized/
+/interim_data/
+/interim_data_rsd/
+/interim_data_rsd_test/
+/results_cont_paper*/
+/results_temp/
+/results_tune_model/
+/synthetic_data*/
+*.h5ad
+*.h5
+*.loom
+*.mtx.gz
+
+# ---------------------------------------------------------------------------
+# Large or access-controlled source data
+#
+# DIAMANTE is behind an access form and the full file is ~700 MB. The 1000
+# Genomes slices and PLINK binaries are all regenerable by the notebook.
+# ---------------------------------------------------------------------------
+*.sumstat.txt
+*.vcf.gz
+*.vcf.gz.tbi
+scripts/2_colocalization_and_finemapping/dat/raw/
+
+# ---------------------------------------------------------------------------
+# Analysis inputs and outputs. The data folders each stage reads from, and
+# everything under interim/ and results/, which the notebook or script that
+# wrote it regenerates. The code is what this repository keeps; the YAML under
+# configs/MOVE/data/ is configuration and stays tracked.
+# ---------------------------------------------------------------------------
+scripts/**/dat/
+scripts/**/data/
+scripts/**/auxilliary_files/
+**/interim/
+**/results/
+**/signed_ld/
+*.nosex
+*.dupvar
+
+# ---------------------------------------------------------------------------
+# Work that is not part of the manuscript: the sequence-to-function notebooks
+# the combined AlphaGenome_Borzoi one replaced, and the analyses run on the
+# later data release.
+# ---------------------------------------------------------------------------
+scripts/3_sequence_to_function_modeling/scratch/
+scripts/5_extra_analyses/
+
+# ---------------------------------------------------------------------------
+# Everything that is not this project's own code. What the repository tracks
+# is scripts/, configs/ and this Readme; the rest is either a copy of someone
+# else's package, a browser-ready export, superseded output, or an archive of
+# the tracked files themselves.
+#
+#   CARMA/, SharePro_coloc/   local copies of both packages, upstream elsewhere
+#   UWash_tracks/             ChromBPNet tracks exported for the WashU browser
+#   archive_unsigned/         results from before the LD matrix carried a sign
+#   paper/                    the manuscript
+#   scripts.zip               a zip of scripts/
+# ---------------------------------------------------------------------------
+/CARMA/
+/SharePro_coloc/
+/UWash_tracks/
+/archive_unsigned/
+/paper/
+/scripts.zip
+
+# ---------------------------------------------------------------------------
+# R
+# ---------------------------------------------------------------------------
+.RData
+.Rhistory
+.Rapp.history
+.Rproj.user/
+*.Rproj
+
+# ---------------------------------------------------------------------------
+# Jupyter and Python
+#
+# Notebook outputs are stripped before committing; see the Reproducibility
+# section of Readme.md.
+# ---------------------------------------------------------------------------
+.ipynb_checkpoints/
+__pycache__/
+*.py[cod]
+.virtual_documents/
+
+# ---------------------------------------------------------------------------
+# API keys and other local secrets.
+#
+# The AlphaGenome notebook reads ALPHA_GENOME_API_KEY from .env, which VS Code
+# also loads into the kernel's environment. No .env variant is ever committed.
+# ---------------------------------------------------------------------------
+.env
+.env.*
+
+# ---------------------------------------------------------------------------
+# Downloads the sequence-model notebook makes for itself: a cached slice of
+# hg38 and the Borzoi track annotation, both re-fetched on demand.
+# ---------------------------------------------------------------------------
+sequence_cache/
+targets_human.txt
+
+# ---------------------------------------------------------------------------
+# macOS
+# ---------------------------------------------------------------------------
+.DS_Store
+._*
